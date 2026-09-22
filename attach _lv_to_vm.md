@@ -4,9 +4,7 @@
 
 ```bash
 sudo lvcreate -L 10G -n disk01 vg_vm                              # create a 10G logical volume named disk01 inside volume group vg_vm — this is the raw "disk" you will attach to the VM
-sudo virsh attach-disk jack /dev/vg_vm/disk01 vdb \               # attach the LV /dev/vg_vm/disk01 to the running libvirt VM 'jack' as device vdb
-  --targetbus virtio --persistent --live
-OR
+                                                                  # attach the LV /dev/vg_vm/disk01 to the running libvirt VM 'jack' as device vdb
 sudo virsh attach-disk jack\
   --source /dev/vg_vm/disk01 \
   --target vdb \
