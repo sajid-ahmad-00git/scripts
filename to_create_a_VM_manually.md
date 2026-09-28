@@ -145,12 +145,17 @@ sudo chown qemu:qemu /var/lib/libvirt/images/autoinstall-dell.iso
 
 ```bash
 sudo virt-install --connect qemu:///system \
-  --name dell \
+  --name testing2 \
   --memory 4096 \
   --vcpus 4 \
-  --disk path=/dev/vg_vm/dell,bus=virtio \
+  --disk path=/dev/vg_vm/testing2,bus=virtio \
   --location /var/lib/libvirt/images/ubuntu-24.04.3-live-server-amd64.iso,kernel=casper/vmlinuz,initrd=casper/initrd \
-  --disk path=/var/lib/libvirt/images/autoinstall-dell.iso,device=cdrom
+  --disk path=/var/lib/libvirt/images/autoinstall-testing2.iso,device=cdrom \
+  --os-variant ubuntu24.04 \
+  --network bridge=br1,model=virtio \
+  --graphics none \
+  --console pty,target_type=serial \
+  --extra-args='autoinstall ds=nocloud\;s=/cdrom/ console=ttyS0,115200n8'
 ```
 
 | Flag | Meaning |
